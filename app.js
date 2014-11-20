@@ -1,12 +1,13 @@
 #!/usr/bin/env node
-var debug = require('debug')('skinit');
+var config = require('./config/config');
+
+var debug = require('debug')(config.appName);
 var app = require('./server');
 
-app.set('port', process.env.PORT || 3000);
+console.log(config.appName);
 
-var server = app.listen(app.get('port'), function() {
+var port = config.server.port;
+
+var server = app.listen(port, function() {
   debug('Express server listening on port ' + server.address().port);
 });
-
-var app = require('./server');
-
