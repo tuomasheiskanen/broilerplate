@@ -2,7 +2,7 @@
 var config = require('./config/config');
 
 var debug = require('debug')(config.appName);
-var app = require('./server');
+var app = require('./server').setup(config);
 
 console.log(config.appName);
 

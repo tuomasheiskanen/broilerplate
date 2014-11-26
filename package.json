@@ -8,5 +8,8 @@
     "body-parser": "~1.9.2",
     "debug": "~2.1.0",
     "static-favicon": "~2.0.0-alpha"
+  },
+  "devDependencies": {
+    "connect-livereload": "~0.5.2"
   }
 }
