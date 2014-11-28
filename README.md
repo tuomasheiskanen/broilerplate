@@ -19,10 +19,20 @@ TODO:
  * Heroku deployment
 
 ##### Hit the ground running
- * git clone https://github.com/tuomashc/broilerplate.git
+
+Replicate the repository
+ * Create github repository "MyRep"
+ * git clone --bare https://github.com/tuomashc/broilerplate.git
+ * cd broilerplate.git
+ * git push --mirror https://github.com/tuomashc/MyRep.git
+ * git clone https://github.com/tuomashc/MyRep.git
+ * rm -rf broilerplate.git
+
+Install packages and start the server
  * npm install
  * bower install
  * gulp serve
+ * http://localhost:3000
  * Start pecking! 
 
 #### References
