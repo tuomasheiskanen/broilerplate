@@ -17,6 +17,10 @@ A rough boilerplate for quickly starting up a web project. Uses Gulp for buildin
 TODO:
  * Test support (karma/jasmine)
  * Heroku deployment
+ * Add production build task to gulp
+ * Minify css/javascript in production builds
+ * Apply gulp-inject in production builds
+ * Add sourcemap support
 
 ##### Hit the ground running
 
