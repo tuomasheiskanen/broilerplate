@@ -4,8 +4,6 @@ var config = require('./config/config');
 var debug = require('debug')(config.appName);
 var app = require('./server').setup(config);
 
-console.log(config.appName);
-
 var port = config.server.port;
 
 var server = app.listen(port, function() {
