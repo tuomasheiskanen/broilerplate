@@ -4,14 +4,16 @@ var gulp 		= require('gulp'),
 	jade		= require('gulp-jade'),
 	concat		= require('gulp-concat'),
 	watch 		= require('gulp-watch'),
+	livereload 	= require('gulp-livereload'),
+	jshint		= require('gulp-jshint'),
+	stylish		= require('jshint-stylish'),  // reporter for stylish
 	path		= require('path'),
-	livereload 	= require('gulp-livereload');
 	common 		= require('./common'),
 	app		 	= require('./server');
 
+
 var LIVERELOAD_PORT = 35729;
-var env = process.env.ENVIRONMENT || 'development';
-var config = common.config()[env];
+var config = common.config();
 
 // Start express server and server livereload to clients
 function startServer(){
@@ -40,14 +42,23 @@ var path = {
 		file: 'main.css'
 	},
 	js: {
-		src: './client/views/**/*.js',
-		dest: './public/javascript'
+		src: [
+				'./client/views/**/*.js',
+				'./client/javascripts/*.js'
+			],
+		dest: './public/javascripts'
+	},
+	nodeJs: {
+		src: [
+				'./*.js',
+				'./models/**/*.js'
+			]	
 	},
 	libs: {
 		src: [
 				'./bower_components/jquery/dist/jquery.js'
 			],
-		dest: './public/javascript'
+		dest: './public/javascripts'
 	},
 	images: {
 		src: './client/images/*.jpg',
@@ -55,6 +66,7 @@ var path = {
 	}
 };
 
+// Compile stylus and pipe to livereload
 gulp.task('stylus', function(){
 	gulp.src(path.stylus.src)
 	.pipe(stylus())
@@ -63,16 +75,20 @@ gulp.task('stylus', function(){
 	.pipe(livereload());
 });
 
+// Compile jade and pipe to livereload
 gulp.task('jade', function(){
 	gulp.src(path.jade.src)
-	.pipe(jade({ pretty:true }))
+	.pipe(jade({ pretty: true }))
 	.pipe(gulp.dest(path.jade.dest))
 	.pipe(livereload());
-})
+});
 
+// Compile javascripts and pipe to livereload
 gulp.task('js', function(){
 	gulp.src(path.js.src)
 	.pipe(gulp.dest(path.js.dest))
+	.pipe(jshint())
+	.pipe(jshint.reporter(stylish))
 	.pipe(livereload());
 });
 
@@ -90,6 +106,13 @@ gulp.task('watch', function(){
 	// Monitor javascript
 	gulp.watch(path.js.src, function(){
 		gulp.start('js');
+	});
+
+	// Monitor node scripts
+	gulp.watch(path.nodeJs.src, function(file){
+		gulp.src(file.path)
+		.pipe(jshint())
+		.pipe(jshint.reporter(stylish));
 	});
 
 });

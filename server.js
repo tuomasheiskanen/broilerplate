@@ -8,8 +8,7 @@ var index = require('./routes/index');
 var common = require('./common');
 
 var app = express();
-var env = process.env.ENVIRONMENT || 'development';
-var config = common.config()[env];
+var config = common.config();
 
 app.use(logger('dev'));
 app.use(bodyParser.json());

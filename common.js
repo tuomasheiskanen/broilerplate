@@ -8,9 +8,9 @@ var config = require('./env.json');
 
 var common = {
 
-	config: function ()
-		{
-			return config;
+	config: function (){
+			var env = process.env.ENVIRONMENT || 'development';
+			return config[env];
 		}
 };
 
