@@ -6,6 +6,7 @@ var gulp 		= require('gulp'),
 	watch 		= require('gulp-watch'),
 	livereload 	= require('gulp-livereload'),
 	jshint		= require('gulp-jshint'),
+	nodemon		= require('gulp-nodemon'),
 	stylish		= require('jshint-stylish'),  // reporter for stylish
 	path		= require('path'),
 	common 		= require('./common'),
@@ -18,11 +19,15 @@ var config = common.config();
 // Start express server and server livereload to clients
 function startServer(){
 
-	var port = config.server.port;
+	// var port = config.server.port;
 
-	var server = app.listen(port, function() {
-	  console.log('Express server listening on port ' + server.address().port);
-	});	
+	// var server = app.listen(port, function() {
+	//   console.log('Express server listening on port ' + server.address().port);
+	// });	
+	nodemon({ script: 'app.js'})
+		.on('restart', function(){
+			console.log('Server restarted');
+		});
 }
 
 var path = {

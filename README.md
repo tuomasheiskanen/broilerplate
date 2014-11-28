@@ -8,12 +8,12 @@ Features:
  * Stylus preprocessing
  * Watch/monitor changes and compile
  * Livereload changes to browser
- * Validate JavaScript with JSHint - Stylish reporter too :)
+ * Restart server when scripts change
+ * Validate JavaScript with JSHint 
  * Isolate source from build product
  * Separate configurations for different environments
 
 TODO:
- * Testing support (karma/jasmine)
+ * Test support (karma/jasmine)
  * Heroku deployment
  * Editor configuration file
- * Autoreload server files (nodemon?)
