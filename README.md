@@ -22,9 +22,7 @@ TODO:
  * Apply gulp-inject in production builds
  * Add sourcemap support
 
-##### Hit the ground running
-
-Replicate the repository
+##### Replicate the repository
  * Create github repository "MyRep"
  * git clone --bare https://github.com/tuomashc/broilerplate.git
  * cd broilerplate.git
@@ -32,7 +30,7 @@ Replicate the repository
  * git clone https://github.com/tuomashc/MyRep.git
  * rm -rf broilerplate.git
 
-Install packages and start the server
+##### Install packages and start the server
  * npm install
  * bower install
  * gulp serve
@@ -43,3 +41,4 @@ Install packages and start the server
  * [Why I Choose Stylus (And You Should Too) - Tuts+ Web Design Article](http://webdesign.tutsplus.com/articles/why-i-choose-stylus-and-you-should-too--webdesign-18412)
  * [What is your folder-structure preference for a large-scale Node.js project?](http://gist.github.com/lancejpollard/1398757)
  * [node.js - ExpressJS How to structure an application? - Stack Overflow](http://stackoverflow.com/questions/5778245/expressjs-how-to-structure-an-application)
+ * [Duplicating a repository](https://help.github.com/articles/duplicating-a-repository/)
