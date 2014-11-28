@@ -12,8 +12,8 @@ Features:
  * Validate JavaScript with JSHint 
  * Isolate source from build product
  * Separate configurations for different environments
+ * EditorConfig support
 
 TODO:
  * Test support (karma/jasmine)
  * Heroku deployment
- * Editor configuration file
