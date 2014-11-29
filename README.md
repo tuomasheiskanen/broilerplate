@@ -21,6 +21,8 @@ TODO:
  * Minify css/javascript in production builds
  * Apply gulp-inject in production builds
  * Add sourcemap support
+ # Replace livereload with Browser-sync(?)
+ # Autoprefix css
 
 ##### Replicate the repository
  * Create github repository "MyRep"
