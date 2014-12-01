@@ -1,16 +1,17 @@
 
-var gulp    = require('gulp'),
-  stylus    = require('gulp-stylus'),
-  jade    = require('gulp-jade'),
-  concat    = require('gulp-concat'),
-  watch     = require('gulp-watch'),
+var gulp      = require('gulp'),
+  stylus      = require('gulp-stylus'),
+  jade        = require('gulp-jade'),
+  concat      = require('gulp-concat'),
+  watch       = require('gulp-watch'),
   livereload  = require('gulp-livereload'),
-  jshint    = require('gulp-jshint'),
-  nodemon   = require('gulp-nodemon'),
-  stylish   = require('jshint-stylish'),  // reporter for stylish
-  path    = require('path'),
-  common    = require('./common'),
-  app     = require('./server');
+  autoprefix  = require('gulp-autoprefixer'),
+  jshint      = require('gulp-jshint'),
+  nodemon     = require('gulp-nodemon'),
+  stylish     = require('jshint-stylish'),  // reporter for stylish
+  path        = require('path'),
+  common      = require('./common'),
+  app         = require('./server');
 
 
 var LIVERELOAD_PORT = 35729;
@@ -19,11 +20,6 @@ var config = common.config();
 // Start express server and server livereload to clients
 function startServer(){
 
-  // var port = config.server.port;
-
-  // var server = app.listen(port, function() {
-  //   console.log('Express server listening on port ' + server.address().port);
-  // });
   nodemon({ script: 'app.js'})
     .on('restart', function(){
       console.log('Server restarted');
@@ -76,6 +72,8 @@ gulp.task('stylus', function(){
   gulp.src(path.stylus.src)
   .pipe(stylus())
   .pipe(concat(path.stylus.file))
+  // .pipe(autoprefix({ browsers: ['last 2 versions']}))
+  .pipe(autoprefix())
   .pipe(gulp.dest(path.stylus.dest))
   .pipe(livereload());
 });

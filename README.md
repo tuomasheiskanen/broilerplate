@@ -13,6 +13,7 @@ A rough boilerplate for quickly starting up a web project. Uses Gulp for buildin
  * Isolate source from build product
  * Separate configurations for different environments
  * EditorConfig support
+ # Autoprefix css
 
 TODO:
  * Test support (karma/jasmine)
@@ -22,7 +23,6 @@ TODO:
  * Apply gulp-inject in production builds
  * Add sourcemap support
  # Replace livereload with Browser-sync(?)
- # Autoprefix css
 
 ##### Replicate the repository
  * Create github repository "MyRep"
