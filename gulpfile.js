@@ -33,25 +33,25 @@ function startServer(){
 var path = {
   jade: {
     src: [
-        './client/views/**/*.jade',
-        './client/*.jade'
+        './app/views/**/*.jade',
+        './app/*.jade'
       ],
-    dest: './public'
+    dest: './dist'
   },
   stylus: {
     src: [
-        './client/views/**/*.styl',
-        './client/styles/**/*.styl'
+        './app/views/**/*.styl',
+        './app/styles/**/*.styl'
       ],
-    dest: './public/styles',
+    dest: './dist/styles',
     file: 'main.css'
   },
   js: {
     src: [
-        './client/views/**/*.js',
-        './client/javascripts/*.js'
+        './app/views/**/*.js',
+        './app/javascripts/*.js'
       ],
-    dest: './public/javascripts'
+    dest: './dist/javascripts'
   },
   nodeJs: {
     src: [
@@ -63,11 +63,11 @@ var path = {
     src: [
         './bower_components/jquery/dist/jquery.js'
       ],
-    dest: './public/javascripts'
+    dest: './dist/javascripts'
   },
   images: {
-    src: './client/images/*.jpg',
-    dest: './public/images'
+    src: './app/images/*.jpg',
+    dest: './dist/images'
   }
 };
 
