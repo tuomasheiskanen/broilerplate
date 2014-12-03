@@ -10,7 +10,7 @@ A rough boilerplate for quickly starting up a web project. Uses Gulp for buildin
  * Livereload changes to browser
  * Restart server when scripts change
  * Validate JavaScript with JSHint 
- * Isolate source from build product
+ * Isolate source from distribution folder
  * Separate configurations for different environments
  * EditorConfig support
  * Autoprefix css
