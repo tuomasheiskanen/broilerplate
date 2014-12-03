@@ -13,7 +13,8 @@ A rough boilerplate for quickly starting up a web project. Uses Gulp for buildin
  * Isolate source from build product
  * Separate configurations for different environments
  * EditorConfig support
- # Autoprefix css
+ * Autoprefix css
+ * Sourcemaps for Javascript and CSS
 
 TODO:
  * Test support (karma/jasmine)
@@ -21,8 +22,7 @@ TODO:
  * Add production build task to gulp
  * Minify css/javascript in production builds
  * Apply gulp-inject in production builds
- * Add sourcemap support
- # Replace livereload with Browser-sync(?)
+ * Replace livereload with Browser-sync(?)
 
 ##### Replicate the repository
  * Create github repository "MyRep"
@@ -44,3 +44,4 @@ TODO:
  * [What is your folder-structure preference for a large-scale Node.js project?](http://gist.github.com/lancejpollard/1398757)
  * [node.js - ExpressJS How to structure an application? - Stack Overflow](http://stackoverflow.com/questions/5778245/expressjs-how-to-structure-an-application)
  * [Duplicating a repository](https://help.github.com/articles/duplicating-a-repository/)
+ * [sourceMappingURL=data:application/json;base64,..." doesn't work (source map)](https://code.google.com/p/chromium/issues/detail?id=126121)

@@ -8,6 +8,8 @@ var gulp      = require('gulp'),
   autoprefix  = require('gulp-autoprefixer'),
   jshint      = require('gulp-jshint'),
   nodemon     = require('gulp-nodemon'),
+  uglify      = require('gulp-uglify'),
+  sourcemaps  = require('gulp-sourcemaps'),
   stylish     = require('jshint-stylish'),  // reporter for stylish
   path        = require('path'),
   common      = require('./common'),
@@ -19,7 +21,6 @@ var config = common.config();
 
 // Start express server and server livereload to clients
 function startServer(){
-
   nodemon({ script: 'app.js'})
     .on('restart', function(){
       console.log('Server restarted');
@@ -47,7 +48,8 @@ var path = {
         './app/views/**/*.js',
         './app/javascripts/*.js'
       ],
-    dest: './dist/javascripts'
+    dest: './dist/javascripts',
+    file: 'main.js'
   },
   nodeJs: {
     src: [
@@ -71,9 +73,10 @@ var path = {
 gulp.task('stylus', function(){
   gulp.src(path.stylus.src)
   .pipe(stylus())
+  .pipe(sourcemaps.init())
   .pipe(concat(path.stylus.file))
-  // .pipe(autoprefix({ browsers: ['last 2 versions']}))
   .pipe(autoprefix())
+  .pipe(sourcemaps.write())
   .pipe(gulp.dest(path.stylus.dest))
   .pipe(livereload());
 });
@@ -89,6 +92,10 @@ gulp.task('jade', function(){
 // Compile javascripts and pipe to livereload
 gulp.task('js', function(){
   gulp.src(path.js.src)
+  .pipe(sourcemaps.init())
+  .pipe(concat(path.js.file))       // The order of conat and uglify matters for sourcemaps. This works..
+  .pipe(uglify())
+  .pipe(sourcemaps.write())
   .pipe(gulp.dest(path.js.dest))
   .pipe(jshint())
   .pipe(jshint.reporter(stylish))
