@@ -11,7 +11,7 @@ var gulp      = require('gulp'),
   uglify      = require('gulp-uglify'),
   sourcemaps  = require('gulp-sourcemaps'),
   gulpif      = require('gulp-if'),
-  clean       = require('gulp-clean'),
+  inject      = require('gulp-inject'),
   del         = require('del'),
   stylish     = require('jshint-stylish'),  // reporter for stylish
   path        = require('path'),
@@ -95,14 +95,19 @@ gulp.task('jade', function(){
 // Compile javascripts and pipe to livereload
 gulp.task('js', function(){
   gulp.src(path.js.src)
-  .pipe(gulpif(config.development, sourcemaps.init()))
-  .pipe(concat(path.js.file))       // The order of concat and uglify matters for sourcemaps. This works..
-  .pipe(uglify())
-  .pipe(gulpif(config.development, sourcemaps.write()))
+  .pipe(gulpif(config.development, sourcemaps.init()))  // Init sourcemaps
+  .pipe(concat(path.js.file))                           // The order of concat and uglify matters for sourcemaps. This works..
+  .pipe(uglify())                                       // Uglify - minify/optimize ...
+  .pipe(gulpif(config.development, sourcemaps.write())) // Write sourcemap to the uglified file
   .pipe(gulp.dest(path.js.dest))
   .pipe(jshint())
   .pipe(jshint.reporter(stylish))
   .pipe(gulpif(config.development, livereload()));
+});
+
+gulp.task('inject', function(){
+  gulp.src('./dist/index.html', { read: false })
+  .pipe(inject(gulp.src('./dist/javascripts/main.js')));
 });
 
 gulp.task('watch', function(){
