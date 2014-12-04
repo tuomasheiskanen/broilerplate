@@ -80,7 +80,7 @@ gulp.task('stylus', function(){
   .pipe(concat(path.stylus.file))
   .pipe(autoprefix())
   .pipe(gulpif(config.development, sourcemaps.write()))
-  .pipe(gulp.dest(path.stylus.dest));
+  .pipe(gulp.dest(path.stylus.dest))
   .pipe(gulpif(config.development, livereload()));
 });
 
@@ -108,7 +108,7 @@ gulp.task('js', function(){
 gulp.task('watch', function(){
 
   gulp.watch(path.jade.src, ['jade']);
-  gulp.watch(path.stylus.src, ['stylus'];
+  gulp.watch(path.stylus.src, ['stylus']);
   gulp.watch(path.js.src, ['js']);
 
   // Monitor node scripts
