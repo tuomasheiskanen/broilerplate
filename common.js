@@ -9,7 +9,7 @@ var config = require('./env.json');
 var common = {
 
   config: function (){
-      var env = process.env.ENVIRONMENT || 'development';
+      var env = process.env.NODE_ENV || 'development';
       return config[env];
     }
 };

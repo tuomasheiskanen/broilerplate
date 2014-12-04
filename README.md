@@ -14,12 +14,12 @@ A rough boilerplate for quickly starting up a web project. Uses Gulp for buildin
  * Separate configurations for different environments
  * EditorConfig support
  * Autoprefix css
- * Sourcemaps for Javascript and CSS
+ * Sourcemaps for minified Javascript and css
+ * Exclude livereload and sourcemaps from production build
 
 TODO:
  * Test support (karma/jasmine)
  * Heroku deployment
- * Add production build task to gulp
  * Minify css/javascript in production builds
  * Apply gulp-inject in production builds
  * Replace livereload with Browser-sync(?)
@@ -38,6 +38,12 @@ TODO:
  * gulp serve
  * http://localhost:3000
  * Start pecking! 
+
+##### Gulp tasks
+ * gulp serve - fire up a developement environment
+ * gulp clean - Clean up previous buidls
+ * NODE_ENV=production gulp build - Create production build
+
 
 #### References
  * [Why I Choose Stylus (And You Should Too) - Tuts+ Web Design Article](http://webdesign.tutsplus.com/articles/why-i-choose-stylus-and-you-should-too--webdesign-18412)

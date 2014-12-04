@@ -10,6 +10,9 @@ var gulp      = require('gulp'),
   nodemon     = require('gulp-nodemon'),
   uglify      = require('gulp-uglify'),
   sourcemaps  = require('gulp-sourcemaps'),
+  gulpif      = require('gulp-if'),
+  clean       = require('gulp-clean'),
+  del         = require('del'),
   stylish     = require('jshint-stylish'),  // reporter for stylish
   path        = require('path'),
   common      = require('./common'),
@@ -73,12 +76,12 @@ var path = {
 gulp.task('stylus', function(){
   gulp.src(path.stylus.src)
   .pipe(stylus())
-  .pipe(sourcemaps.init())
+  .pipe(gulpif(config.development, sourcemaps.init()))
   .pipe(concat(path.stylus.file))
   .pipe(autoprefix())
-  .pipe(sourcemaps.write())
-  .pipe(gulp.dest(path.stylus.dest))
-  .pipe(livereload());
+  .pipe(gulpif(config.development, sourcemaps.write()))
+  .pipe(gulp.dest(path.stylus.dest));
+  .pipe(gulpif(config.development, livereload()));
 });
 
 // Compile jade and pipe to livereload
@@ -86,37 +89,27 @@ gulp.task('jade', function(){
   gulp.src(path.jade.src)
   .pipe(jade({ pretty: true }))
   .pipe(gulp.dest(path.jade.dest))
-  .pipe(livereload());
+  .pipe(gulpif(config.development, livereload()));
 });
 
 // Compile javascripts and pipe to livereload
 gulp.task('js', function(){
   gulp.src(path.js.src)
-  .pipe(sourcemaps.init())
-  .pipe(concat(path.js.file))       // The order of conat and uglify matters for sourcemaps. This works..
+  .pipe(gulpif(config.development, sourcemaps.init()))
+  .pipe(concat(path.js.file))       // The order of concat and uglify matters for sourcemaps. This works..
   .pipe(uglify())
-  .pipe(sourcemaps.write())
+  .pipe(gulpif(config.development, sourcemaps.write()))
   .pipe(gulp.dest(path.js.dest))
   .pipe(jshint())
   .pipe(jshint.reporter(stylish))
-  .pipe(livereload());
+  .pipe(gulpif(config.development, livereload()));
 });
 
 gulp.task('watch', function(){
-  // Monitor markup
-  gulp.watch(path.jade.src, function(){
-    gulp.start('jade');
-  });
 
-  // Monitor styles
-  gulp.watch(path.stylus.src, function(){
-    gulp.start('stylus');
-  });
-
-  // Monitor javascript
-  gulp.watch(path.js.src, function(){
-    gulp.start('js');
-  });
+  gulp.watch(path.jade.src, ['jade']);
+  gulp.watch(path.stylus.src, ['stylus'];
+  gulp.watch(path.js.src, ['js']);
 
   // Monitor node scripts
   gulp.watch(path.nodeJs.src, function(file){
@@ -137,7 +130,18 @@ gulp.task('statics', function(){
   .pipe(gulp.dest(path.images.dest));
 });
 
+// Clean distribution folder
+gulp.task('clean', del.bind(null, ['dist']));
+
+// Development mode
 gulp.task('serve', ['statics', 'jade', 'stylus', 'js', 'watch'], function(){
   startServer();
   livereload.listen();
 });
+
+// Build a production 'package'
+gulp.task('build', ['clean'], function(){
+  gulp.start('statics', 'jade', 'stylus', 'js');
+});
+
+
