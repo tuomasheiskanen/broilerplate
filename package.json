@@ -43,5 +43,6 @@
 	},
 	"scripts": {
 		"preupdate": "npm install"
-	}
+	},
+	"main": "app.js"
 }
