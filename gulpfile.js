@@ -1,4 +1,3 @@
-
 var gulp      = require('gulp'),
   stylus      = require('gulp-stylus'),
   jade        = require('gulp-jade'),
@@ -17,7 +16,6 @@ var gulp      = require('gulp'),
   path        = require('path'),
   common      = require('./common'),
   app         = require('./server');
-
 
 var LIVERELOAD_PORT = 35729;
 var config = common.config();

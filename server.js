@@ -9,6 +9,8 @@ var common          = require('./common');
 var app = express();
 var config = common.config();
 
+app.set('views', __dirname + '/app/views');
+app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -57,6 +59,5 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
 
 module.exports = app;
