@@ -1,48 +1,61 @@
 {
-	"author": "broilerplate <http://broilerplate/>",
-	"name": "broilerplate",
-	"version": "0.0.0",
-	"description": "broilerplate",
-	"private": true,
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/tuomasheiskanen/broilerplate.git"
-	},
-	"dependencies": {
-		"express": "~4.10.2",
-		"path": "~0.4.9",
-		"favicon": "0.0.2",
-		"morgan": "~1.5.0",
-		"cookie-parser": "~1.3.3",
-		"body-parser": "~1.9.2",
-		"debug": "~2.1.0",
-		"static-favicon": "~2.0.0-alpha"
-	},
-	"devDependencies": {
-		"connect-livereload": "~0.5.2",
-		"gulp-less": "~1.3.6",
-		"gulp-concat": "~2.4.2",
-		"gulp-watch": "~2.0.0",
-		"gulp-livereload": "~2.1.1",
-		"gulp-jade": "~0.10.0",
-		"gulp-stylus": "~1.3.4",
-		"gulp-jshint": "~1.9.0",
-		"jshint-stylish": "~1.0.0",
-		"gulp-nodemon": "~1.0.4",
-		"gulp": "~3.8.10",
-		"gulp-autoprefixer": "~2.0.0",
-		"gulp-sourcemaps": "~1.2.8",
-		"gulp-if": "~1.2.5",
-		"del": "~1.0.0",
-		"gulp-inject": "~1.0.2",
-		"gulp-uglify": "~1.0.1",
-		"jade": "~1.8.1"
-	},
-	"engines": {
-		"node": ">=0.10.0"
-	},
-	"scripts": {
-		"preupdate": "npm install"
-	},
-	"main": "app.js"
+  "author": "broilerplate <http://broilerplate/>",
+  "name": "broilerplate",
+  "version": "0.0.0",
+  "description": "broilerplate",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tuomasheiskanen/broilerplate.git"
+  },
+  "dependencies": {
+    "express": "~4.10.2",
+    "path": "~0.4.9",
+    "favicon": "0.0.2",
+    "morgan": "~1.5.0",
+    "cookie-parser": "~1.3.3",
+    "body-parser": "~1.9.2",
+    "debug": "~2.1.0",
+    "static-favicon": "~2.0.0-alpha"
+  },
+  "devDependencies": {
+    "connect-livereload": "~0.5.2",
+    "gulp-less": "~1.3.6",
+    "gulp-concat": "~2.4.2",
+    "gulp-watch": "~2.0.0",
+    "gulp-livereload": "~2.1.1",
+    "gulp-jade": "~0.10.0",
+    "gulp-stylus": "~1.3.4",
+    "gulp-jshint": "~1.9.0",
+    "jshint-stylish": "~1.0.0",
+    "gulp-nodemon": "~1.0.4",
+    "gulp": "~3.8.10",
+    "gulp-autoprefixer": "~2.0.0",
+    "gulp-sourcemaps": "~1.2.8",
+    "gulp-if": "~1.2.5",
+    "del": "~1.0.0",
+    "gulp-inject": "~1.0.2",
+    "gulp-uglify": "~1.0.1",
+    "jade": "~1.8.1",
+    "karma": "~0.12.28",
+    "karma-coverage": "~0.2.7",
+    "karma-chrome-launcher": "~0.1.7",
+    "jasmine-core": "~2.1.3",
+    "karma-jasmine": "~0.3.2",
+    "protractor": "~1.5.0",
+    "gulp-minify-css": "~0.3.11",
+    "gulp-rename": "~1.2.0"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "preupdate": "npm install",
+    "test": "node node_modules/karma/bin/karma start test/karma.conf.js",
+    "test-single-run": "node node_modules/karma/bin/karma start test/karma.conf.js  --single-run",
+    "update-webdriver": "webdriver-manager update",
+    "preprotractor": "npm run update-webdriver",
+    "protractor": "protractor test/protractor-conf.js"
+  },
+  "main": "app.js"
 }

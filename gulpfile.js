@@ -15,7 +15,9 @@ var gulp      = require('gulp'),
   stylish     = require('jshint-stylish'),  // reporter for stylish
   path        = require('path'),
   common      = require('./common'),
-  app         = require('./server');
+  app         = require('./server'),
+  minifycss   = require('gulp-minify-css'),
+  rename      = require('gulp-rename');
 
 var LIVERELOAD_PORT = 35729;
 var config = common.config();
@@ -82,6 +84,14 @@ gulp.task('stylus', function(){
   .pipe(gulpif(config.development, livereload()));
 });
 
+// Minify styles
+gulp.task('minify-css', function() {
+    gulp.src('./dist/styles/*.css')
+	.pipe(minifycss())
+	.pipe(rename({ suffix: '.min' }))
+	.pipe(gulp.dest(path.stylus.dest));
+});
+
 // Compile jade and pipe to livereload
 gulp.task('jade', function(){
   gulp.src(path.jade.src)
@@ -144,7 +154,5 @@ gulp.task('serve', ['statics', 'jade', 'stylus', 'js', 'watch'], function(){
 
 // Build a production 'package'
 gulp.task('build', ['clean'], function(){
-  gulp.start('statics', 'jade', 'stylus', 'js');
+  gulp.start('statics', 'jade', 'stylus', 'minify-css', 'js');
 });
-
-
