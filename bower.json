@@ -1,9 +1,9 @@
 {
   "name": "broilerplate",
   "version": "0.0.1",
-  "homepage": "https://github.com/tuomashc/broilerplate",
+  "homepage": "https://github.com/tuomasheiskanen/broilerplate",
   "authors": [
-    "tuomashc"
+    "tuomasheiskanen"
   ],
   "description": "Client packages",
   "license": "MIT",
@@ -16,5 +16,6 @@
   ],
   "dependencies": {
     "jquery": "~2.1.1"
-  }
+  },
+  "appPath": "app"
 }
